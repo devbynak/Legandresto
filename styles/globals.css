@@ -1,0 +1,160 @@
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Properties */
+:root { 
+  --bg: #0b0b0b; 
+  --text: #f8fafc;
+  --gold: #C7A44C;
+  --charcoal: #1F1F1F;
+  --ink: #0B0B0B;
+  --warmgray: #2B2B2B;
+}
+
+/* Base Styles */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body { 
+    @apply bg-ink text-white antialiased min-h-screen font-body; 
+  }
+
+  .container { 
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; 
+  }
+}
+
+/* Components */
+@layer components {
+  .btn { 
+     @apply inline-flex items-center gap-2 rounded-2xl px-6 py-3 font-medium 
+           transition-all duration-200 ease-out transform-gpu
+           active:scale-95 hover:-translate-y-0.5
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-ink focus-visible:ring-gold/50; 
+  }
+
+  .card { 
+    @apply bg-warmgray rounded-2xl border border-zinc-800/60 shadow-luxury
+           transition-colors duration-200 hover:border-zinc-700/60; 
+  }
+
+  .ligatures {
+    font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+    font-feature-settings: "liga" 1, "dlig" 1, "hlig" 1, "calt" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* Typography */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+    font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
+    font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "kern" 1;
+  }
+}
+
+/* Responsive Text */
+@layer utilities {
+  @screen sm {
+    h1 { @apply text-4xl; }
+    h2 { @apply text-2xl; }
+  }
+
+  @screen md {
+    h1 { @apply text-5xl; }
+    h2 { @apply text-3xl; }
+   }
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+  will-change: transform;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Reduce Motion Overrides */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .animate-shimmer { animation: none !important; will-change: auto !important; }
+  .animate-fadeIn { animation: none !important; }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+   }
+  
+  .btn {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .card {
+    @apply p-4;
+  }
+}
+
+/* Numeric Typography */
+@layer components {
+  .numbers {
+    @apply font-numbers tracking-tight;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum" 1, "tnum" 1, "kern" 1;
+   }
+}
+
+/* Cross-browser compatibility styles */
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+  input,
+  textarea,
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+}
+
+/* Fix for Firefox focus rings */
+:focus {
+  outline: 2px solid rgba(199, 164, 76, 0.5);
+  outline-offset: 2px;
+}
+
+/* Fix for Safari text rendering */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix for IE11 flexbox issues */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .flex {
+    display: block;
+  }
+  .flex > * {
+    display: inline-block;
+  }
+}
