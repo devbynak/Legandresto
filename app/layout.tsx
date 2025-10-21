@@ -53,6 +53,12 @@ export const metadata: Metadata = {
   keywords: ["fine dining", "Filipino-Arabic fusion", "Dubai restaurant", "Kerala spices", "luxury dining", "Deira restaurant"],
   authors: [{ name: "Le Grandresto" }],
   category: "Restaurant",
+  icons: [
+    { rel: "icon", url: "/logo.png", sizes: "32x32", type: "image/png" },
+    { rel: "icon", url: "/logo.png", sizes: "16x16", type: "image/png" },
+    { rel: "apple-touch-icon", url: "/logo.png", sizes: "180x180" },
+    { rel: "shortcut icon", url: "/logo.png", type: "image/png" }
+  ],
   manifest: "/manifest.json",
   openGraph: {
     title: "Le Grandresto — Fine Dining Experience",
